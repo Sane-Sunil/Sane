@@ -1,0 +1,80 @@
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+body {
+  background: #0a0a0a;
+  color: #e0e0e0;
+  font-family: 'Courier New', Courier, monospace;
+  font-size: 16px;
+  height: 100vh;
+  width: 100vw;
+  overflow: hidden;
+  line-height: 1.5;
+}
+
+#terminal {
+  height: 100vh;
+  padding: 10px;
+  overflow: hidden;
+}
+
+#output {
+  height: 100%;
+  overflow-y: auto;
+  white-space: pre-wrap;
+  word-wrap: break-word;
+  padding-bottom: 4px;
+  user-select: text;
+  -webkit-user-select: text;
+}
+
+#output::-webkit-scrollbar {
+  width: 6px;
+}
+
+#output::-webkit-scrollbar-track {
+  background: #0a0a0a;
+}
+
+#output::-webkit-scrollbar-thumb {
+  background: #2a2a2a;
+  border-radius: 3px;
+}
+
+#input-line {
+  display: flex;
+  padding: 4px 0;
+}
+
+#input-line .prompt {
+  color: #00ff41;
+  white-space: pre;
+  user-select: none;
+  -webkit-user-select: none;
+  flex-shrink: 0;
+}
+
+#input-field {
+  background: transparent;
+  border: none;
+  outline: none;
+  color: #e0e0e0;
+  font-family: inherit;
+  font-size: inherit;
+  line-height: inherit;
+  caret-color: #00ff41;
+  resize: none;
+  overflow: hidden;
+  padding: 0;
+  margin: 0;
+  white-space: pre-wrap;
+  word-wrap: break-word;
+  flex: 1;
+}
+
+#input-field.disabled {
+  opacity: 0.5;
+}

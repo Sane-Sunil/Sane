@@ -1,0 +1,43 @@
+{
+  "about": {
+    "name": "Your Name",
+    "title": "Full Stack Developer",
+    "location": "City, Country",
+    "bio": "A passionate developer building things for the web."
+  },
+  "skills": {
+    "languages": ["JavaScript", "Python", "TypeScript"],
+    "frontend": ["React", "HTML", "CSS"],
+    "backend": ["Node.js", "Express"],
+    "tools": ["Git", "Docker", "VS Code"]
+  },
+  "experience": [
+    {
+      "role": "Software Developer",
+      "company": "Company Name",
+      "period": "2022 - Present",
+      "description": "Building and maintaining web applications."
+    }
+  ],
+  "education": [
+    {
+      "degree": "B.Sc. in Computer Science",
+      "school": "University Name",
+      "year": "2020 - 2024"
+    }
+  ],
+  "projects": [
+    {
+      "name": "Terminal Portfolio",
+      "description": "A browser-based terminal emulator portfolio.",
+      "tech": ["JavaScript", "HTML", "CSS"],
+      "hostedUrl": "https://example.com/terminal-portfolio",
+      "repoUrl": "https://github.com/username/terminal-portfolio"
+    }
+  ],
+  "contact": {
+    "email": "user@example.com",
+    "github": "github.com/username",
+    "linkedin": "linkedin.com/in/username"
+  }
+}
