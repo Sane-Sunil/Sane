@@ -3,13 +3,16 @@
     "name": "Your Name",
     "title": "Full Stack Developer",
     "location": "City, Country",
-    "bio": "A passionate developer building things for the web."
+    "bio": "A passionate developer building things for the web.",
+    "imageUrl": "../assets/profile.jpg"
   },
   "skills": {
-    "languages": ["JavaScript", "Python", "TypeScript"],
-    "frontend": ["React", "HTML", "CSS"],
+    "hardware": ["Arduino", "ESP32", "Embedded C++"],
+    "languages": ["JS", "Python", "C", "C++"],
+    "frontend": ["React", "HTML", "CSS", "JS"],
     "backend": ["Node.js", "Express"],
-    "tools": ["Git", "Docker", "VS Code"]
+    "tools": ["Git", "VS Code", "Docker", "Kubernetes"],
+    "automation": ["n8n"]
   },
   "experience": [
     {

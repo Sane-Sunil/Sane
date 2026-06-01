@@ -1,3 +1,5 @@
+import { printObj } from '../utils/print.js';
+
 function showHelp(print) {
   print('\n');
   print('experience -- Show work experience');
@@ -28,11 +30,9 @@ export default function experience({ args, flags, print, data }) {
     }
     data.experience.forEach(e => {
       print(`${e.role} at ${e.company}`);
-      print(`  ${e.period}`);
-      print(`  ${e.description}`);
+      printObj(print, e, { skip: ['role', 'company'], indent: 2 });
       print('');
     });
-    print('\n');
   } else {
     print(`experience: unrecognized subcommand "${args[0]}"`);
     showHelp(print);

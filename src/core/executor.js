@@ -1,9 +1,9 @@
 import { commands } from '../commands/index.js';
 import { findSimilar } from './suggestions.js';
 
-export function createExecutor(output, data) {
+export function createExecutor(output, data, extra = {}) {
   return {
-    execute(parsed) {
+    execute(parsed, ctxOverrides = {}) {
       const { command, args, flags } = parsed;
       const handler = commands[command];
 
@@ -16,7 +16,7 @@ export function createExecutor(output, data) {
         return;
       }
 
-      handler({ args, flags, print: (text) => output.print(text), clear: () => output.clear(), data, commands });
+      return handler({ args, flags, print: (text) => output.print(text), clear: () => output.clear(), data, commands, ...extra, ...ctxOverrides });
     }
   };
 }

@@ -1,6 +1,19 @@
+const STORAGE_KEY = 'terminal:history';
+
+function load() {
+  try {
+    const raw = localStorage.getItem(STORAGE_KEY);
+    return raw ? JSON.parse(raw) : [];
+  } catch { return []; }
+}
+
+function save(entries) {
+  try { localStorage.setItem(STORAGE_KEY, JSON.stringify(entries)); } catch {}
+}
+
 export function createHistory(max = 100) {
-  const entries = [];
-  let index = -1;
+  const entries = load();
+  let index = entries.length;
 
   return {
     add(cmd) {
@@ -8,6 +21,7 @@ export function createHistory(max = 100) {
       entries.push(cmd);
       if (entries.length > max) entries.shift();
       index = entries.length;
+      save(entries);
     },
 
     up() {
@@ -24,6 +38,12 @@ export function createHistory(max = 100) {
 
     reset() {
       index = entries.length;
+    },
+
+    clear() {
+      entries.length = 0;
+      index = 0;
+      try { localStorage.removeItem(STORAGE_KEY); } catch {}
     }
   };
 }

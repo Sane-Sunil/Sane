@@ -1,3 +1,5 @@
+import { printObj } from '../utils/print.js';
+
 function showHelp(print) {
   print('\n');
   print('education -- Show educational background');
@@ -27,10 +29,9 @@ export default function education({ args, flags, print, data }) {
       return;
     }
     data.education.forEach(e => {
-      print(`${e.degree}`);
-      print(`  School: ${e.school}`);
-      print(`  Year:   ${e.year}`);
-      print('\n');
+      print(e.degree);
+      printObj(print, e, { skip: ['degree'], indent: 2 });
+      print('');
     });
   } else {
     print(`education: unrecognized subcommand "${args[0]}"`);

@@ -119,8 +119,21 @@ Status: Completed
 
 ---
 
-## Module 14 - Final
-
----
-
-*Note: Modules 11-13 were reverted. Current state is Module 10's textarea + separate prompt approach.*
+## Module 11 - Final
+- History saved to localStorage (persists across refreshes)
+- `clear -h` clears command history (memory + localStorage)
+- Click anywhere in terminal window to focus input (real terminal behavior)
+- Tab autocompletion for subcommands (`about s<Tab>` → `about show `, `help ab<Tab>` → `help about `)
+- `kill` command closes the portfolio tab
+- Empty-line submission is a no-op (no blank prompt printed)
+- Fully responsive: `clamp()` font scaling, `100dvh` for mobile browser bars, max-width container for large screens, mobile breakpoint (480px), touch pointer sizing
+- Ctrl+scroll to zoom terminal text (0.3x–3x, persisted to localStorage)
+- Commands use dynamic key-value printing via `printObj` utility (`src/utils/print.js`) — no hardcoded template strings
+- Skills command already dynamic, kept as-is
+- `about show` displays profile image as colored `█` characters via `imgToAscii()` + `renderAsciiHtml()` (`src/utils/ascii.js`) — set `about.imageUrl` in portfolio.json
+- `about show --img` shows profile image only (no text info)
+- `about show --img | download` downloads the original image
+- `download` command receives piped URL and triggers browser file download
+- Pipe (`|`) support in command execution with context passing
+- Every command has `--help` flag with detailed usage
+- `help <command>` runs the target command with `--help` to show its docs

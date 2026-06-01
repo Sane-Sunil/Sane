@@ -13,6 +13,15 @@ function levenshtein(a, b) {
   return dp[m][n];
 }
 
+export const subcommands = {
+  about: ['show'],
+  skills: ['show'],
+  contact: ['show'],
+  education: ['show'],
+  experience: ['show'],
+  projects: ['show'],
+};
+
 export function getSuggestions(input, candidates) {
   if (!input) return [];
   const lower = input.toLowerCase();

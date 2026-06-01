@@ -1,3 +1,5 @@
+import { printObj } from '../utils/print.js';
+
 function openUrl(url) {
   if (url) window.open(url, '_blank');
 }
@@ -32,12 +34,10 @@ export default function projects({ args, flags, print, data }) {
 
   if (args[0] === 'show' && !hasAction) {
     data.projects.forEach(p => {
-      print(`${p.name}`);
-      print(`  ${p.description}`);
-      print(`  Tech: ${p.tech.join(', ')}`);
-      print('');
+      print(p.name);
+      printObj(print, p, { skip: ['name'], indent: 2 });
+      print('\n');
     });
-    print('\n');
     return;
   }
 

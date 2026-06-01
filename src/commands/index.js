@@ -7,6 +7,8 @@ import education from './education.js';
 import experience from './experience.js';
 import projects from './projects.js';
 import clear from './clear.js';
+import kill from './kill.js';
+import download from './download.js';
 
 export const commands = {
   echo,
@@ -17,5 +19,7 @@ export const commands = {
   education,
   experience,
   projects,
-  clear
+  clear,
+  kill,
+  download
 };
