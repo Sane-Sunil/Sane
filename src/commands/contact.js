@@ -18,7 +18,8 @@ export default function contact({ args, flags, print, data }) {
     return;
   }
 
-  // Validate flags  const unknownFlags = flags.filter(flag => flag !== 'help');
+  // Validate flags
+  const unknownFlags = flags.filter(flag => flag !== 'help');
   if (unknownFlags.length > 0) {
     print(`contact: unrecognized flag --${unknownFlags[0]}`);
     printHelp(print);
