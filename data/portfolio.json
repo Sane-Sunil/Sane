@@ -1,9 +1,9 @@
 {
   "about": {
-    "name": "Your Name",
-    "title": "Full Stack Developer",
-    "location": "City, Country",
-    "bio": "A passionate developer building things for the web.",
+    "name": "Sane Sunil",
+    "title": "Web Developer | Hardware Prototyper | Cloud & DevOps Enthusiast | Gamer | Someone\n\n",
+    "location": "Kerala, India",
+    "bio": "A developer building things out of curiosity. Trying out something that I find interesting and fun. I have a passion for learning new technologies and exploring the intersection of hardware and software. I enjoy working on projects that challenge me and allow me to grow as a developer. When I'm not coding, you can find me gaming or watching youtube.",
     "imageUrl": "../assets/profile.jpg"
   },
   "skills": {
@@ -16,31 +16,66 @@
   },
   "experience": [
     {
-      "role": "Software Developer",
-      "company": "Company Name",
-      "period": "2022 - Present",
-      "description": "Building and maintaining web applications."
+      "role": "Intern",
+      "organization": "Inovus Labs IEDC",
+      "period": "2023 Oct - 2024 Mar",
+      "description": "Building and learning UI, web development, Arduino."
+    },
+    {
+      "role": "Project Manager",
+      "organization": "Inovus Labs IEDC",
+      "period": "2024 Mar - 2025 Mar",
+      "description": "Improved project development and learned more about hardware."
+    },
+    {
+      "role": "Technical Lead",
+      "organization": "Inovus Labs IEDC",
+      "period": "2025 Mar - 2026 Feb",
+      "description": "Led technical initiatives, mentored juniors, learned and developed in web, cloud, automation and hardware fields."
     }
   ],
   "education": [
     {
-      "degree": "B.Sc. in Computer Science",
-      "school": "University Name",
-      "year": "2020 - 2024"
+      "degree": "BCA",
+      "school": "Mahatma Gandhi University",
+      "year": "2023 - 2026"
     }
   ],
   "projects": [
     {
-      "name": "Terminal Portfolio",
-      "description": "A browser-based terminal emulator portfolio.",
-      "tech": ["JavaScript", "HTML", "CSS"],
-      "hostedUrl": "https://example.com/terminal-portfolio",
-      "repoUrl": "https://github.com/username/terminal-portfolio"
+      "name": "EV bike",
+      "description": "A project where we developed an EV bike.",
+      "skills/tech": ["Mechanical Work", "Basic Electrical Work", "Patience"],
+      "hostedUrl": "",
+      "repoUrl": ""
+    },
+    {
+      "name": "Stego canvas",
+      "description": "An online tool to hide files using stegnography.",
+      "skills/tech": ["React", "CSS"],
+      "hostedUrl": "https://stego-canvas.netlify.app/",
+      "repoUrl": "https://github.com/Sane-Sunil/Stego-canvas"
+    },
+    {
+      "name": "Gibberish",
+      "description": "Gibberish is a private and anonymous messaging platform.",
+      "skills/tech": ["JS", "Node.js", "CSS", "HTML"],
+      "hostedUrl": "https://gibberish-private-chat.netlify.app/",
+      "repoUrl": "https://github.com/Sane-Sunil/Gibberish"
+    },
+    {
+      "name": "Water analysis system",
+      "description": "A system to analyze water quality automatically.",
+      "skills/tech": ["ESP32", "Embedded C++", "Firebase", "JS", "CSS", "HTML"],
+      "hostedUrl": "",
+      "repoUrl": ""
     }
   ],
   "contact": {
-    "email": "user@example.com",
-    "github": "github.com/username",
-    "linkedin": "linkedin.com/in/username"
+    "email": "sanesunil.official@protonmail.com",
+    "github": "https://github.com/Sane-Sunil",
+    "linkedin": "https://linkedin.com/in/sane-sunil",
+    "": "",
+    "Others": "No other social media account found."
   }
 }

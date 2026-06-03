@@ -75,7 +75,7 @@ export default async function about({ args, flags, print, printHtml, data, pipe 
         print('');
       }
     }
-    printObj(print, data.about, { skip: ['bio', 'imageUrl'], para: ['bio'] });
+    printObj(print, data.about, { skip: ['imageUrl'], para: ['bio'] });
   } else {
     print(`about: unrecognized subcommand "${args[0]}"`);
     showHelp(print);
