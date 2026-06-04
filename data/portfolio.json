@@ -16,10 +16,10 @@
   },
   "experience": [
     {
-      "role": "Intern",
+      "role": "Technical Lead",
       "organization": "Inovus Labs IEDC",
-      "period": "2023 Oct - 2024 Mar",
-      "description": "Building and learning UI, web development, Arduino."
+      "period": "2025 Mar - 2026 Feb",
+      "description": "Led technical initiatives, mentored juniors, learned and developed in web, cloud, automation and hardware fields."
     },
     {
       "role": "Project Manager",
@@ -28,10 +28,10 @@
       "description": "Improved project development and learned more about hardware."
     },
     {
-      "role": "Technical Lead",
+      "role": "Intern",
       "organization": "Inovus Labs IEDC",
-      "period": "2025 Mar - 2026 Feb",
-      "description": "Led technical initiatives, mentored juniors, learned and developed in web, cloud, automation and hardware fields."
+      "period": "2023 Oct - 2024 Mar",
+      "description": "Building and learning UI, web development, Arduino."
     }
   ],
   "education": [

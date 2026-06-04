@@ -9,6 +9,7 @@ import projects from './projects.js';
 import clear from './clear.js';
 import kill from './kill.js';
 import download from './download.js';
+import startgui from './startgui.js';
 
 export const commands = {
   echo,
@@ -21,5 +22,6 @@ export const commands = {
   projects,
   clear,
   kill,
-  download
+  download,
+  startgui
 };

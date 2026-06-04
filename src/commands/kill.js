@@ -8,9 +8,19 @@ function showHelp(print) {
   print('\n');
 }
 
-export default function kill({ args, flags, print, clear }) {
+export default function kill({ args, flags, print, clear, embedded }) {
   if (flags.includes('help')) {
     showHelp(print);
+    return;
+  }
+
+  if (embedded) {
+    print('Closing terminal...');
+    const app = document.querySelector('.app-overlay[data-app="terminal"]');
+    if (app) {
+      const closeBtn = app.querySelector('.app-window-close');
+      if (closeBtn) closeBtn.click();
+    }
     return;
   }
 

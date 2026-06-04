@@ -1,5 +1,7 @@
 # Terminal Portfolio Progress
 
+## Cli Modules
+
 ## Module 1 - Terminal UI Shell Setup
 - Created fullscreen terminal layout (HTML + CSS)
 - Built scrollable output area and fixed input line at bottom
@@ -38,7 +40,7 @@ Status: Completed
 - Created `data/portfolio.json` with about, skills, contact data
 - Implemented `help` — lists available commands, supports `help <cmd>`
 - Implemented `about` — shows bio, supports `about show`
-- Implemented `skills` — lists skills by category, supports `skills show`
+- Implemented `skills` — lists skills byggggggggggggggggggggggggggggg                   category, supports `skills show`
 - Implemented `contact` — shows contact info, supports `contact show`
 - All commands follow CLI convention: no args → usage, `--help` → docs, subcommand → action
 - Executor now passes `data` and `commands` context to handlers
@@ -137,3 +139,89 @@ Status: Completed
 - Pipe (`|`) support in command execution with context passing
 - Every command has `--help` flag with detailed usage
 - `help <command>` runs the target command with `--help` to show its docs
+
+---
+
+## GUI Modules
+
+Module 1 — GUI Bootstrap & Desktop Layout:
+- Mode detection (gui/cli via localStorage)
+- Desktop base layout (HTML + CSS)
+- GUI entry via inline script in index.html (loads correct module before DOMContentLoaded)
+- Desktop container with grid styling
+- Taskbar with clock and "Open Terminal" button
+- Gradient wallpaper (fallback)
+- Fade-in animation on desktop load
+- Files created: state.js, main.js, desktop/layout.js, desktop/styles.css
+
+Status: Completed
+
+---
+
+Module 2 — App System (Icons + Click Open):
+- App registry (6 apps: About, Skills, Projects, Experience, Contact, Terminal)
+- App icon grid rendered on desktop from registry
+- Click/dblclick handler opens app overlay window
+- App window system (overlay with header, close button, body container)
+- Scale-in animation on window open
+- Responsive icon grid
+- Files created: apps/registry.js, apps/view.js
+
+Status: Completed
+
+---
+
+Module 3 — Portfolio App Views:
+- Shared data adapter (src/shared/dataAdapter.js) — fetches + caches portfolio.json
+- About view — name, title, location, bio
+- Skills view — categorized skill tags
+- Projects view — project cards with tech tags + links
+- Experience view — experience timeline + education
+- Contact view — labeled contact info with clickable links
+- All views wired to registry via `render` function
+- View-specific CSS (cards, tags, contact rows, loading/error states)
+- Files created: shared/dataAdapter.js, apps/about.js, apps/skills.js, apps/projects.js, apps/experience.js, apps/contact.js
+
+App UX improvements (post-Module 3 polish):
+- **About**: Profile image (circular avatar with scale-in animation), gradient divider, improved typography
+- **Skills**: Category color coding with `color-mix` tag styling, skill count badges, hover lift with colored shadow, colored left border accent, staggered fade-slide animation
+- **Projects**: Card hover lift with shadow, Live/Repo buttons (primary/secondary styles), staggered entry animation, tech tags
+- **Experience**: Vertical timeline with connecting line and hover-highlighted dots, card hover border effect, staggered animation per item, section icons
+- **Contact**: Card-based layout with icons, copy-to-clipboard button with feedback (📋→✓→📋), GitHub/LinkedIn direct link cards with arrow hover effect, animated entry
+
+Status: Completed
+
+---
+
+Module 4 — Terminal Integration (CLI Embed):
+- Terminal app on desktop opens embedded CLI inside GUI app window
+- `startgui` CLI command (switches from CLI to GUI)
+- RunCLI bridge (initTerminal) for safe CLI interaction
+- Mode switching via GUI "Open Terminal" button
+- Embedded terminal supports all CLI features: history, tab-complete, pipes, Ctrl+C/L, paste
+- Terminal app in default desktop layout
+
+Status: Completed
+
+---
+
+Module 5 — Desktop Grid & Folder System:
+- Replaced static icon grid with draggable grid-based desktop (CSS Grid)
+- Icons snap to grid cells on drop; swap positions on overlap
+- Right-click context menu: New Folder on desktop, Move to Folder / Remove on apps
+- Double-click folder to open window with contained app icons
+- Layout (positions, folder contents) persisted to localStorage
+- Files created: desktop/desktopState.js
+
+Status: Completed
+
+---
+
+Module 6 — State Persistence & Polish:
+- localStorage mode persistence (state.js)
+- Animations (desktop fade-in, window scale-in, folder scale-in)
+- Responsive polish — app-window mobile sizing, taskbar wrapping, settings tabs scroll, about sidebar stacking, folder window mobile width, experience timeline mobile layout
+- Final integration review — mode switching, multi-window, drag, folders, settings, keyboard shortcuts, mobile back button
+- State persistence: layout, wallpaper, theme, accent color, taskbar prefs, icon color (desktopState.js)
+
+Status: Completed

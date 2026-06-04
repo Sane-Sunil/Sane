@@ -38,6 +38,7 @@ export default async function help({ args, flags, print, commands, data }) {
   print('  help        Show this help message');
   print('  echo        Echo back input');
   print('  kill        Close the portfolio tab');
+  print('  startgui    Switch to GUI mode');
   print('\n');
 
   print('Shortcuts:');
