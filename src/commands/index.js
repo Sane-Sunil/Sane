@@ -9,6 +9,7 @@ import projects from './projects.js';
 import clear from './clear.js';
 import kill from './kill.js';
 import download from './download.js';
+import resume from './resume.js';
 import startgui from './startgui.js';
 
 export const commands = {
@@ -23,5 +24,6 @@ export const commands = {
   clear,
   kill,
   download,
+  resume,
   startgui
 };

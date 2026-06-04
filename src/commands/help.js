@@ -35,6 +35,7 @@ export default async function help({ args, flags, print, commands, data }) {
   print('  contact     Show contact information');
   print('  clear       Clear the terminal screen');
   print('  download    Download a file from a URL');
+  print('  resume      Show or download my resume');
   print('  help        Show this help message');
   print('  echo        Echo back input');
   print('  kill        Close the portfolio tab');
