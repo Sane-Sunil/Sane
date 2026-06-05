@@ -40,7 +40,7 @@ Status: Completed
 - Created `data/portfolio.json` with about, skills, contact data
 - Implemented `help` — lists available commands, supports `help <cmd>`
 - Implemented `about` — shows bio, supports `about show`
-- Implemented `skills` — lists skills byggggggggggggggggggggggggggggg                   category, supports `skills show`
+- Implemented `skills` — lists skills by category, supports `skills show`
 - Implemented `contact` — shows contact info, supports `contact show`
 - All commands follow CLI convention: no args → usage, `--help` → docs, subcommand → action
 - Executor now passes `data` and `commands` context to handlers
