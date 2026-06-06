@@ -1,0 +1,16 @@
+========================================
+               WARNING
+========================================
+
+Congratulation, you've been fooled.
+
+The only dangerous thing is your curiosity and the emotional damage.
+But your curiosity is admirable.
+
+Here's a secret:
+This portfolio was built with pure HTML, CSS, and JavaScript.
+No frameworks. No libraries. Just code.
+
+========================================
+You found the Easter Egg! Or have you?
+========================================

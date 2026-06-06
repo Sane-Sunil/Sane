@@ -2,7 +2,7 @@ const LAYOUT_KEY = 'portfolio:desktop';
 const DEFAULT_COLS = 10;
 
 export function defaultLayout() {
-  const appIds = ['about', 'skills', 'projects', 'experience', 'contact', 'resume', 'settings'];
+  const appIds = ['about', 'skills', 'projects', 'experience', 'contact', 'resume', 'settings', 'filemanager'];
   return {
     cols: DEFAULT_COLS,
     items: appIds.map((id, i) => ({
@@ -15,7 +15,7 @@ export function defaultLayout() {
   };
 }
 
-const VALID_APP_IDS = ['about', 'skills', 'projects', 'experience', 'contact', 'resume', 'settings'];
+const VALID_APP_IDS = ['about', 'skills', 'projects', 'experience', 'contact', 'resume', 'settings', 'filemanager'];
 
 export function getLayout() {
   try {

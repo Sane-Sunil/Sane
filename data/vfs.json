@@ -1,0 +1,88 @@
+{
+  "/": {
+    "home/": {
+      "do_not_open/": {
+        "i_said_dont/": {
+          "seriously/": {
+            "stop/": {
+              "listen_to_me/": {
+                "fine/": {
+                  "you_have_been_warned/": {
+                    "go_back/": {
+                      "why_are_you_doing_it/": {
+                        "its_dangerous/": {
+                          "please_no/": {
+                            "ok_fine/": {
+                              "which_way_now/": {
+                                "a/": {
+                                  "wrong_turn_ahead/": {
+                                    "shortcut_here/": {
+                                      "you_are_close/": {
+                                        "just_a_bit_more/": {
+                                          "almost_done/": {
+                                            "trust_me/": {
+                                              "something.txt": {
+                                                "$path": "../assets/something.txt"
+                                              }
+                                            }
+                                          }
+                                        }
+                                      }
+                                    }
+                                  }
+                                },
+                                "b/": {
+                                  "this_is_it/": {
+                                    "one_more_click/": {
+                                      "surely_this/": {
+                                        "no_really/": {
+                                          "okay_stop/": {
+                                            "just_leave/": {
+                                              "dummy.txt": {
+                                                "$path": "../assets/dummy.txt"
+                                              }
+                                            }
+                                          }
+                                        }
+                                      }
+                                    }
+                                  }
+                                },
+                                "c/": {
+                                  "easy_way_out/": {
+                                    "promised_land/": {
+                                      "final_step/": {
+                                        "thats_it/": {
+                                          "go_back_now/": {
+                                            "i_lied/": {}
+                                          }
+                                        }
+                                      }
+                                    }
+                                  }
+                                }
+                              }
+                            }
+                          }
+                        }
+                      }
+                    }
+                  }
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "apps/": {
+      "about/": {},
+      "contact/": {},
+      "skills/": {},
+      "settings/": {},
+      "projects/": {},
+      "experience/": {}
+    },
+    "test/": {}
+  }
+}

@@ -225,3 +225,53 @@ Module 6 — State Persistence & Polish:
 - State persistence: layout, wallpaper, theme, accent color, taskbar prefs, icon color (desktopState.js)
 
 Status: Completed
+
+---
+
+## Module 7 — File Manager GUI App
+- VFS structure stored in data/vfs.json (loaded via fetch with lazy init + caching)
+- Implemented directory browsing with click-to-navigate from VFS data
+- Added breadcrumb navigation with clickable path segments
+- Built file preview panel — fetches content from $path on file select
+- Folder preview shows children list in preview panel
+- /apps/ subdirectories use app icons from registry and delegate to openApp(id)
+- Double-click file opens in full app window via openApp (close, minimize, maximize, drag, escape, tray)
+- Local folder mapping via File System Access API (showDirectoryPicker) — map any VFS folder to a local directory
+- Mapped folders show local files with full preview and opening support
+- File viewer handles text, images, PDF, audio, and video by extension
+- No CLI interaction, no new architectural layers
+- Files created: filemanager/vfs.js, filemanager/view.js, data/vfs.json
+- Asset created: assets/dummy.txt
+
+Status: Completed
+
+Module 7 — Bugfix (CSS):
+- Fixed misplaced `.fm-preview` responsive rules (width: 100%, max-width: none) that were outside the media query, causing the preview panel to always be 100% width and compress the file list to near-zero width on desktop
+- Removed extra closing brace `}` at end of styles.css that caused a CSS syntax error
+- VFS directory listing now displays correctly in the file list panel
+
+Status: Fixed
+
+Module 7 — Mount Local Folder Feature:
+- Right-click on empty VFS folder → "Mount Local Folder" to pick a PC directory
+- Mounted folders show a 🌐 icon and display local file contents when navigated into
+- Right-click on mounted folder → "Unmount Folder" to remove the mapping
+- File System Access API (showDirectoryPicker) with permission persistence
+- File handles stored in IndexedDB for session-to-session persistence
+- Mount metadata persisted in localStorage
+- Supports navigation into subdirectories of mounted folders
+- Preview and file viewer work with mounted files (text, images, audio, video, PDF)
+- Only empty VFS folders and subfolders can be mounted
+- Non-empty VFS folders show no mount option
+- Files/directories inside a mounted folder don't show mount options
+- Default view always starts at VFS root (/)
+- New exports from vfs.js: mountFolder, unmountFolder, isMounted, isMountedSync, isFolderEmpty, getFileUrl
+
+Status: Completed
+
+Module 7 — Mount Subdirectory Fix:
+- Fixed path matching in getChildren() for nested directories inside mounted folders
+- Bug: `mountPath + "/"` created double slash (e.g. `/test//`) when mountPath already ended with `/`, causing `startsWith` to never match subdirectories
+- Fix: use `path.startsWith(mountPath)` directly — correct because only paths that truly start with the mount path (including its trailing `/`) will match
+
+Status: Fixed

@@ -5,6 +5,7 @@ import { renderExperience } from './experience.js';
 import { renderContact } from './contact.js';
 import { renderSettings, initSettings } from './settings.js';
 import { renderResume } from './resume.js';
+import { renderFileManager, initFileManager } from './filemanager/view.js';
 
 export const apps = [
   { id: 'about', name: 'About', icon: '👤', color: '#4fc3f7', render: renderAbout },
@@ -14,4 +15,6 @@ export const apps = [
   { id: 'contact', name: 'Contact', icon: '📧', color: '#e57373', render: renderContact },
   { id: 'settings', name: 'Settings', icon: '⚙️', color: '#888888', render: renderSettings, init: initSettings },
   { id: 'resume', name: 'Resume', icon: '📄', color: '#e57373', render: renderResume },
+  { id: 'filemanager', name: 'File Manager', icon: '🗂️', color: '#78909c', render: renderFileManager, init: initFileManager },
+  { id: 'file-viewer', name: 'File Viewer', icon: '📄', color: '#78909c' },
 ];
