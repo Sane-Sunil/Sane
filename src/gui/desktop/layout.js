@@ -64,6 +64,71 @@ export function applyWallpaper() {
       }
     }
   }
+  applyWallpaperThemeMatch(el, wp);
+}
+
+function hexToRgb(hex) {
+  let h = hex.replace('#', '');
+  if (h.length === 3) h = h[0] + h[0] + h[1] + h[1] + h[2] + h[2];
+  if (h.length === 8) h = h.slice(0, 6);
+  return {
+    r: parseInt(h.substring(0, 2), 16),
+    g: parseInt(h.substring(2, 4), 16),
+    b: parseInt(h.substring(4, 6), 16),
+  };
+}
+
+function rgbToHex(r, g, b) {
+  return '#' +
+    Math.round(r).toString(16).padStart(2, '0') +
+    Math.round(g).toString(16).padStart(2, '0') +
+    Math.round(b).toString(16).padStart(2, '0');
+}
+
+function lightenHex(hex, amount) {
+  const { r, g, b } = hexToRgb(hex);
+  return rgbToHex(
+    r + (255 - r) * amount,
+    g + (255 - g) * amount,
+    b + (255 - b) * amount,
+  );
+}
+
+function lightenGradient(gradient, amount) {
+  return gradient.replace(/#[0-9a-fA-F]{3,8}\b/g, (match) => lightenHex(match, amount));
+}
+
+function darkenHex(hex, amount) {
+  const { r, g, b } = hexToRgb(hex);
+  return rgbToHex(
+    r * (1 - amount),
+    g * (1 - amount),
+    b * (1 - amount),
+  );
+}
+
+function darkenGradient(gradient, amount) {
+  return gradient.replace(/#[0-9a-fA-F]{3,8}\b/g, (match) => darkenHex(match, amount));
+}
+
+function applyWallpaperThemeMatch(el, wp) {
+  const match = ds.getWallpaperMatchTheme();
+  if (!match) return;
+  if (wp.type === 'solid') {
+    const adjusted = ds.getTheme() === 'light'
+      ? lightenHex(wp.value, 0.50)
+      : darkenHex(wp.value, 0.50);
+    el.style.backgroundImage = 'none';
+    el.style.backgroundColor = adjusted;
+    el.style.backgroundSize = 'auto';
+  } else if (wp.type === 'gradient') {
+    const adjusted = ds.getTheme() === 'light'
+      ? lightenGradient(wp.value, 0.50)
+      : darkenGradient(wp.value, 0.50);
+    el.style.backgroundImage = adjusted;
+    el.style.backgroundColor = 'transparent';
+    el.style.backgroundSize = 'auto';
+  }
 }
 
 export function refreshDesktop() {
@@ -197,6 +262,7 @@ export function applyTheme() {
   desktop.style.setProperty('--accent', accent);
   document.documentElement.style.setProperty('--accent', accent);
   applyIconColor();
+  applyWallpaper();
 }
 
 export function applyTaskbarPrefs() {

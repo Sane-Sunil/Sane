@@ -239,3 +239,13 @@ export function getIconColor() {
 export function saveIconColor(color) {
   localStorage.setItem(ICON_COLOR_KEY, color);
 }
+
+const WP_MATCH_KEY = 'portfolio:wpMatchTheme';
+
+export function getWallpaperMatchTheme() {
+  try { return localStorage.getItem(WP_MATCH_KEY) === 'true'; } catch { return false; }
+}
+
+export function saveWallpaperMatchTheme(val) {
+  localStorage.setItem(WP_MATCH_KEY, val ? 'true' : 'false');
+}

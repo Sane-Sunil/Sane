@@ -50,6 +50,7 @@ export function renderSettings() {
   const currentType = WP_TYPES.includes(wp.type) ? wp.type : 'gradient';
   const theme = ds.getTheme();
   const iconAuto = ds.getIconColor() === 'auto';
+  const wpMatch = ds.getWallpaperMatchTheme();
 
   const gridHtml = GRID_OPTIONS.map(c =>
     `<button class="st-grid-btn${col === c ? ' active' : ''}" data-cols="${c}">${c}×${c}</button>`
@@ -164,6 +165,12 @@ export function renderSettings() {
                 <button class="st-apply st-apply-live">Apply</button>
               </div>
             </div>
+          </div>
+          <div class="st-row" style="margin-top:8px;padding-top:10px;border-top:1px solid color-mix(in srgb, var(--text) 6%, transparent)">
+            <label class="st-toggle-row">
+              <input type="checkbox" id="st-wp-match"${wpMatch ? ' checked' : ''}>
+              <span class="st-label">Match theme (solid/gradient)</span>
+            </label>
           </div>
         </div>
       </div>
@@ -488,6 +495,9 @@ export function initSettings(body) {
       if (chk.id === 'st-icon-auto') {
         ds.saveIconColor(chk.checked ? 'auto' : 'custom');
         applyIconColor();
+      } else if (chk.id === 'st-wp-match') {
+        ds.saveWallpaperMatchTheme(chk.checked);
+        applyWallpaper();
       } else {
         const showClock = document.getElementById('st-show-clock').checked;
         const showSettings = document.getElementById('st-show-settings').checked;

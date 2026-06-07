@@ -271,6 +271,7 @@ Status: Fixed
 - Minimize: scale-down (0.92) + fade-out exit animation
 - Close: scale-down + fade-out before element removal
 - Restore from tray: `windowEnter` keyframe animation (scale-up + fade-in) on restore
+- Wallpaper match theme: bidirectional toggle in Settings → Desktop → Wallpaper; light theme lightens toward white (`lightenHex 0.50`), dark theme darkens toward black (`darkenHex 0.50`), auto-updates on theme switch
 - Files changed: src/gui/desktop/styles.css, src/gui/apps/skills.js, src/gui/apps/projects.js, src/gui/apps/contact.js, src/gui/apps/about.js, src/gui/apps/experience.js, src/gui/apps/settings.js
 
 Status: Completed
