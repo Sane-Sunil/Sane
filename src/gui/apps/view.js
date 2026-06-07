@@ -93,19 +93,30 @@ export async function openApp(app) {
     const nowMax = !win.classList.contains('maximized');
     if (nowMax) {
       prevRect = win.getBoundingClientRect();
+      win.style.left = prevRect.left + 'px';
+      win.style.top = prevRect.top + 'px';
+      win.style.width = prevRect.width + 'px';
+      win.style.height = prevRect.height + 'px';
+      void win.offsetHeight;
       win.classList.add('maximized');
+      win.style.left = '';
+      win.style.top = '';
+      win.style.width = '';
+      win.style.height = '';
+    } else {
       win.style.left = '0px';
       win.style.top = '0px';
-    } else {
+      const curRect = win.getBoundingClientRect();
+      win.style.width = curRect.width + 'px';
+      win.style.height = curRect.height + 'px';
+      void win.offsetHeight;
       win.classList.remove('maximized');
       if (prevRect) {
         win.style.left = prevRect.left + 'px';
         win.style.top = prevRect.top + 'px';
-      } else {
-        const rect = win.getBoundingClientRect();
-        win.style.left = Math.max(0, (window.innerWidth - rect.width) / 2) + 'px';
-        win.style.top = Math.max(0, (window.innerHeight - rect.height) / 2) + 'px';
       }
+      win.style.width = '';
+      win.style.height = '';
     }
     maxBtn.textContent = nowMax ? '⊠' : '□';
     maxBtn.title = nowMax ? 'Restore' : 'Maximize';
@@ -229,6 +240,11 @@ function restoreFromTray(id) {
   if (idx !== -1) MINIMIZED.splice(idx, 1);
   overlay.classList.remove('minimized', 'anim-exit');
   overlay.style.display = '';
+  overlay.classList.add('anim-enter');
+  overlay.addEventListener('animationend', function handler() {
+    overlay.removeEventListener('animationend', handler);
+    overlay.classList.remove('anim-enter');
+  });
   focusApp(id);
   trayEl.classList.remove('active');
   trayIndex = -1;

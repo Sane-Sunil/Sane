@@ -1,6 +1,6 @@
 # Terminal Portfolio Progress
 
-## Cli Modules
+## CLI Modules
 
 ## Module 1 - Terminal UI Shell Setup
 - Created fullscreen terminal layout (HTML + CSS)
@@ -128,11 +128,11 @@ Status: Completed
 - Tab autocompletion for subcommands (`about s<Tab>` → `about show `, `help ab<Tab>` → `help about `)
 - `kill` command closes the portfolio tab
 - Empty-line submission is a no-op (no blank prompt printed)
-- Fully responsive: `clamp()` font scaling, `100dvh` for mobile browser bars, max-width container for large screens, mobile breakpoint (480px), touch pointer sizing
+- Fully responsive: `clamp()` font scaling, `100dvh`, max-width container, mobile breakpoint, touch sizing
 - Ctrl+scroll to zoom terminal text (0.3x–3x, persisted to localStorage)
-- Commands use dynamic key-value printing via `printObj` utility (`src/utils/print.js`) — no hardcoded template strings
+- Commands use dynamic key-value printing via `printObj` utility — no hardcoded template strings
 - Skills command already dynamic, kept as-is
-- `about show` displays profile image as colored `█` characters via `imgToAscii()` + `renderAsciiHtml()` (`src/utils/ascii.js`) — set `about.imageUrl` in portfolio.json
+- `about show` displays profile image as colored `█` characters via `imgToAscii()` + `renderAsciiHtml()`
 - `about show --img` shows profile image only (no text info)
 - `about show --img | download` downloads the original image
 - `download` command receives piped URL and triggers browser file download
@@ -140,11 +140,13 @@ Status: Completed
 - Every command has `--help` flag with detailed usage
 - `help <command>` runs the target command with `--help` to show its docs
 
+Status: Completed
+
 ---
 
 ## GUI Modules
 
-Module 1 — GUI Bootstrap & Desktop Layout:
+## Module 1 - GUI Bootstrap & Desktop Layout
 - Mode detection (gui/cli via localStorage)
 - Desktop base layout (HTML + CSS)
 - GUI entry via inline script in index.html (loads correct module before DOMContentLoaded)
@@ -158,7 +160,7 @@ Status: Completed
 
 ---
 
-Module 2 — App System (Icons + Click Open):
+## Module 2 - App System (Icons + Click Open)
 - App registry (6 apps: About, Skills, Projects, Experience, Contact, Terminal)
 - App icon grid rendered on desktop from registry
 - Click/dblclick handler opens app overlay window
@@ -171,7 +173,7 @@ Status: Completed
 
 ---
 
-Module 3 — Portfolio App Views:
+## Module 3 - Portfolio App Views
 - Shared data adapter (src/shared/dataAdapter.js) — fetches + caches portfolio.json
 - About view — name, title, location, bio
 - Skills view — categorized skill tags
@@ -181,19 +183,13 @@ Module 3 — Portfolio App Views:
 - All views wired to registry via `render` function
 - View-specific CSS (cards, tags, contact rows, loading/error states)
 - Files created: shared/dataAdapter.js, apps/about.js, apps/skills.js, apps/projects.js, apps/experience.js, apps/contact.js
-
-App UX improvements (post-Module 3 polish):
-- **About**: Profile image (circular avatar with scale-in animation), gradient divider, improved typography
-- **Skills**: Category color coding with `color-mix` tag styling, skill count badges, hover lift with colored shadow, colored left border accent, staggered fade-slide animation
-- **Projects**: Card hover lift with shadow, Live/Repo buttons (primary/secondary styles), staggered entry animation, tech tags
-- **Experience**: Vertical timeline with connecting line and hover-highlighted dots, card hover border effect, staggered animation per item, section icons
-- **Contact**: Card-based layout with icons, copy-to-clipboard button with feedback (📋→✓→📋), GitHub/LinkedIn direct link cards with arrow hover effect, animated entry
+- Post-polish: avatar scale-in, skill tag hover lift + colored shadow, project card hover lift, timeline dot hover effects, contact copy-to-clipboard feedback
 
 Status: Completed
 
 ---
 
-Module 4 — Terminal Integration (CLI Embed):
+## Module 4 - Terminal Integration (CLI Embed)
 - Terminal app on desktop opens embedded CLI inside GUI app window
 - `startgui` CLI command (switches from CLI to GUI)
 - RunCLI bridge (initTerminal) for safe CLI interaction
@@ -205,7 +201,7 @@ Status: Completed
 
 ---
 
-Module 5 — Desktop Grid & Folder System:
+## Module 5 - Desktop Grid & Folder System
 - Replaced static icon grid with draggable grid-based desktop (CSS Grid)
 - Icons snap to grid cells on drop; swap positions on overlap
 - Right-click context menu: New Folder on desktop, Move to Folder / Remove on apps
@@ -217,7 +213,7 @@ Status: Completed
 
 ---
 
-Module 6 — State Persistence & Polish:
+## Module 6 - State Persistence & Polish
 - localStorage mode persistence (state.js)
 - Animations (desktop fade-in, window scale-in, folder scale-in)
 - Responsive polish — app-window mobile sizing, taskbar wrapping, settings tabs scroll, about sidebar stacking, folder window mobile width, experience timeline mobile layout
@@ -229,73 +225,52 @@ Status: Completed
 ---
 
 ## Module 7 — File Manager GUI App
-- VFS structure stored in data/vfs.json (loaded via fetch with lazy init + caching)
-- Implemented directory browsing with click-to-navigate from VFS data
-- Added breadcrumb navigation with clickable path segments
-- Built file preview panel — fetches content from $path on file select
-- Folder preview shows children list in preview panel
-- /apps/ subdirectories use app icons from registry and delegate to openApp(id)
-- Double-click file opens in full app window via openApp (close, minimize, maximize, drag, escape, tray)
-- Local folder mapping via File System Access API (showDirectoryPicker) — map any VFS folder to a local directory
+- VFS structure stored in data/vfs.json (fetch with lazy init + caching)
+- Directory browsing with click-to-navigate from VFS data
+- Breadcrumb navigation with clickable path segments
+- File preview panel — fetches content from $path on file select
+- Folder preview shows children list
+- /apps/ subdirectories use app icons from registry, delegate to openApp(id)
+- Double-click file opens in full app window (close, minimize, maximize, drag, escape, tray)
+- Local folder mapping via File System Access API (showDirectoryPicker)
 - Mapped folders show local files with full preview and opening support
-- File viewer handles text, images, PDF, audio, and video by extension
-- No CLI interaction, no new architectural layers
-- Files created: filemanager/vfs.js, filemanager/view.js, data/vfs.json
-- Asset created: assets/dummy.txt
+- File viewer handles text, images, PDF, audio, video by extension
+- Mount subdirectory fix: double-slash bug in path matching for nested mounted dirs
+- Files created: filemanager/vfs.js, filemanager/view.js, data/vfs.json, assets/dummy.txt
+- CSS fix: misplaced `.fm-preview` responsive rules outside media query causing 100% width
 
 Status: Completed
 
-Module 7 — Bugfix (CSS):
-- Fixed misplaced `.fm-preview` responsive rules (width: 100%, max-width: none) that were outside the media query, causing the preview panel to always be 100% width and compress the file list to near-zero width on desktop
-- Removed extra closing brace `}` at end of styles.css that caused a CSS syntax error
-- VFS directory listing now displays correctly in the file list panel
+---
 
-Status: Fixed
-
-Module 7 — Mount Local Folder Feature:
-- Right-click on empty VFS folder → "Mount Local Folder" to pick a PC directory
-- Mounted folders show a 🌐 icon and display local file contents when navigated into
-- Right-click on mounted folder → "Unmount Folder" to remove the mapping
-- File System Access API (showDirectoryPicker) with permission persistence
-- File handles stored in IndexedDB for session-to-session persistence
-- Mount metadata persisted in localStorage
-- Supports navigation into subdirectories of mounted folders
-- Preview and file viewer work with mounted files (text, images, audio, video, PDF)
-- Only empty VFS folders and subfolders can be mounted
-- Non-empty VFS folders show no mount option
-- Files/directories inside a mounted folder don't show mount options
-- Default view always starts at VFS root (/)
-- New exports from vfs.js: mountFolder, unmountFolder, isMounted, isMountedSync, isFolderEmpty, getFileUrl
-
-Status: Completed
-
-Module 7 — Mount Subdirectory Fix:
-- Fixed path matching in getChildren() for nested directories inside mounted folders
-- Bug: `mountPath + "/"` created double slash (e.g. `/test//`) when mountPath already ended with `/`, causing `startsWith` to never match subdirectories
-- Fix: use `path.startsWith(mountPath)` directly — correct because only paths that truly start with the mount path (including its trailing `/`) will match
+## Module 8 — Maximize State Persistence Fix
+- Fixed inline `left`/`top` styles overriding CSS `.maximized` rule on restore
+- Fixed `saved?.maximized !== false` defaulting new apps to maximized
+- Files changed: src/gui/apps/view.js
 
 Status: Fixed
 
 ---
 
-## Module 8 — Maximize State Persistence Fix
+## Module 9 — UI Animations & Interactive Effects
+- Centered timeline dots using CSS grid + variables (--tl-pl, --tl-line-x) instead of manual pixel offsets
+- Added `--i` index to Skills, Projects, and Contact templates for staggered entrance animations
+- Added `slideUp` and `slideRight` keyframe animations
+- Staggered entrance animations on all app views (Skills 0.03s, Projects 0.05s, Experience 0.06s, Contact 0.07s)
+- Hover effects: card lift/translate, tag color shift, dot scale, window button scale, FM list item translate
+- Click feedback: scale-down on buttons, copy buttons
+- All animations in 0.1s–0.4s range, consistent with existing design
+- Tab switch transitions: paneLeave exit animation (fade+slideUp) before new pane slides in (About, Experience, Settings)
+- Custom sliding toggle switches: styled checkboxes as animated toggles with sliding knob (Settings)
+- Loading shimmer: animated gradient pulse on `.app-loading` during data fetch
+- Search input focus: animated border + padding expand on focus (Skills, Projects)
+- Smooth scroll: `scroll-behavior: smooth` on all scrollable app bodies
+- Filter button pop: `btnPop` keyframe on `.active` filter buttons (Skills, Projects)
+- Shimmer hover effect: diagonal accent gradient sweep (105deg) across cards on hover using `::after` pseudo-element (Project, Experience, Contact, FM list items)
+- Maximize/restore: smooth size transition via forced reflow technique (`void offsetHeight` between start/end states)
+- Minimize: scale-down (0.92) + fade-out exit animation
+- Close: scale-down + fade-out before element removal
+- Restore from tray: `windowEnter` keyframe animation (scale-up + fade-in) on restore
+- Files changed: src/gui/desktop/styles.css, src/gui/apps/skills.js, src/gui/apps/projects.js, src/gui/apps/contact.js, src/gui/apps/about.js, src/gui/apps/experience.js, src/gui/apps/settings.js
 
-### Problem
-When an app window was maximized and the page was reloaded, the saved maximized state was restored (class `maximized` applied) but the window didn't fill the desktop. It only corrected itself after manually clicking restore → maximize.
-
-### Root Cause 1 — Inline style overriding CSS class
-In `src/gui/apps/view.js`, the `openApp()` function always set inline `left`/`top` styles via centering logic after the window was appended to the DOM. These inline styles overrode the CSS `.app-window.maximized { left: 0; top: 0; }` rule, preventing the window from properly filling the viewport.
-
-**Fix:** When the window is restored as maximized, explicitly set `win.style.left = '0px'` and `win.style.top = '0px'` to match the maximize button handler behavior.
-
-### Root Cause 2 — Default maximized state for new apps
-`const isMaximized = saved?.maximized !== false` evaluated to `true` when `saved` was `undefined` (first-time app open), causing every new app window to open maximized by default.
-
-**Fix:** Changed to `saved?.maximized === true`, so maximized state is only restored when explicitly saved.
-
-### Files Changed
-- `src/gui/apps/view.js`
-  - Line 60: `saved?.maximized !== false` → `saved?.maximized === true`
-  - Lines 135-142: Wrapped centering in `if (!isMaximized)`, else explicitly set `left: 0; top: 0`
-
-Status: Fixed
+Status: Completed

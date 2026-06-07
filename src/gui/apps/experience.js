@@ -39,24 +39,34 @@ export function renderExperience(data) {
         <button class="ex-tab active"
           onclick="
             (function(btn){
+              var body = btn.closest('.ex-layout').querySelector('.ex-body');
+              var old = body.querySelector('.ex-pane.active');
               btn.parentNode.querySelectorAll('.ex-tab').forEach(function(t){t.classList.remove('active')});
               btn.classList.add('active');
-              var body = btn.closest('.ex-layout').querySelector('.ex-body');
-              body.querySelectorAll('.ex-pane').forEach(function(p){p.classList.remove('active')});
-              body.querySelector('#ex-pane-exp').classList.add('active');
+              if(old&&old!==body.querySelector(btn.dataset.paneId?('#ex-pane-'+btn.dataset.paneId):'#ex-pane-exp')){old.classList.add('pane-leave');}
+              setTimeout(function(){
+                body.querySelectorAll('.ex-pane').forEach(function(p){p.classList.remove('active','pane-leave')});
+                (body.querySelector(btn.dataset.paneId?'#ex-pane-'+btn.dataset.paneId:'#ex-pane-exp')).classList.add('active');
+              },120);
             })(this)
           "
+          data-pane-id="exp"
         >💼 Experience</button>
         <button class="ex-tab"
           onclick="
             (function(btn){
+              var body = btn.closest('.ex-layout').querySelector('.ex-body');
+              var old = body.querySelector('.ex-pane.active');
               btn.parentNode.querySelectorAll('.ex-tab').forEach(function(t){t.classList.remove('active')});
               btn.classList.add('active');
-              var body = btn.closest('.ex-layout').querySelector('.ex-body');
-              body.querySelectorAll('.ex-pane').forEach(function(p){p.classList.remove('active')});
-              body.querySelector('#ex-pane-edu').classList.add('active');
+              if(old&&old!==body.querySelector('#ex-pane-'+btn.dataset.paneId)){old.classList.add('pane-leave');}
+              setTimeout(function(){
+                body.querySelectorAll('.ex-pane').forEach(function(p){p.classList.remove('active','pane-leave')});
+                body.querySelector('#ex-pane-'+btn.dataset.paneId).classList.add('active');
+              },120);
             })(this)
           "
+          data-pane-id="edu"
         >🎓 Education</button>
       </div>
       <div class="ex-body">

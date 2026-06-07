@@ -31,7 +31,7 @@ export function renderProjects(data) {
     const dataAttr = JSON.stringify({ name: p.name, tech: p['skills/tech'] || [] }).replace(/'/g, "&#39;").replace(/"/g, '&quot;');
 
     return `
-      <div class="pj-card" data-pj='${dataAttr}'>
+      <div class="pj-card" data-pj='${dataAttr}' style="--i:${i}">
         <div class="pj-card-top">
           <h3 class="pj-name">${p.name}</h3>
           <span class="pj-num">#${i + 1}</span>

@@ -91,7 +91,7 @@ export function renderSettings() {
           </div>
         </div>
         <div class="st-section">
-          <div class="st-sh">Icon Color</div>
+          <div class="st-sh">Icon Text Color</div>
           <div class="st-row">
             <label class="st-toggle-row">
               <input type="checkbox" id="st-icon-auto"${iconAuto ? ' checked' : ''}>
@@ -322,21 +322,29 @@ export function initSettings(body) {
   body.addEventListener('click', e => {
     const tab = e.target.closest('.st-tab');
     if (tab) {
+      const pane = body.querySelector(`#st-pane-${tab.dataset.tab}`);
+      if (pane && pane.classList.contains('active')) return;
       body.querySelectorAll('.st-tab').forEach(t => t.classList.remove('active'));
       tab.classList.add('active');
-      body.querySelectorAll('.st-pane').forEach(p => p.classList.remove('active'));
-      const pane = body.querySelector(`#st-pane-${tab.dataset.tab}`);
-      if (pane) pane.classList.add('active');
+      body.querySelectorAll('.st-pane').forEach(p => p.classList.add('pane-leave'));
+      setTimeout(() => {
+        body.querySelectorAll('.st-pane').forEach(p => p.classList.remove('active', 'pane-leave'));
+        if (pane) pane.classList.add('active');
+      }, 120);
       return;
     }
 
     const wpTab = e.target.closest('.st-wp-tab');
     if (wpTab) {
+      const pane = body.querySelector(`.st-wp-pane[data-wp="${wpTab.dataset.wp}"]`);
+      if (pane && pane.classList.contains('active')) return;
       body.querySelectorAll('.st-wp-tab').forEach(t => t.classList.remove('active'));
       wpTab.classList.add('active');
-      body.querySelectorAll('.st-wp-pane').forEach(p => p.classList.remove('active'));
-      const pane = body.querySelector(`.st-wp-pane[data-wp="${wpTab.dataset.wp}"]`);
-      if (pane) pane.classList.add('active');
+      body.querySelectorAll('.st-wp-pane').forEach(p => p.classList.add('pane-leave'));
+      setTimeout(() => {
+        body.querySelectorAll('.st-wp-pane').forEach(p => p.classList.remove('active', 'pane-leave'));
+        if (pane) pane.classList.add('active');
+      }, 120);
       if (wpTab.dataset.wp === 'solid') {
         const value = solidInput ? solidInput.value.trim() || solidPicker.value : '#000000';
         ds.saveWallpaper({ type: 'solid', value });

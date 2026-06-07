@@ -10,7 +10,7 @@ export function renderContact(data) {
     if (kl === 'email') {
       const esc = val.replace(/'/g, "\\'");
       items.push(`
-        <div class="ct-card">
+        <div class="ct-card" style="--i:${items.length}">
           <div class="ct-ico" style="background:rgba(79,195,247,0.1)">📧</div>
           <div class="ct-body">
             <span class="ct-label">${label}</span>
@@ -23,7 +23,7 @@ export function renderContact(data) {
       `);
     } else if (kl === 'github') {
       items.push(`
-        <a href="${val}" target="_blank" class="ct-card ct-link">
+        <a href="${val}" target="_blank" class="ct-card ct-link" style="--i:${items.length}">
           <div class="ct-ico" style="background:rgba(51,51,51,0.15)">🐙</div>
           <div class="ct-body">
             <span class="ct-label">${label}</span>
@@ -34,7 +34,7 @@ export function renderContact(data) {
       `);
     } else if (kl === 'linkedin') {
       items.push(`
-        <a href="${val}" target="_blank" class="ct-card ct-link">
+        <a href="${val}" target="_blank" class="ct-card ct-link" style="--i:${items.length}">
           <div class="ct-ico" style="background:rgba(10,102,194,0.12)">🔗</div>
           <div class="ct-body">
             <span class="ct-label">${label}</span>
@@ -48,7 +48,7 @@ export function renderContact(data) {
         ? `<a href="${val}" target="_blank" class="ct-inline">${val}</a>`
         : val;
       items.push(`
-        <div class="ct-card">
+        <div class="ct-card" style="--i:${items.length}">
           <div class="ct-ico" style="background:rgba(255,255,255,0.04)">📄</div>
           <div class="ct-body">
             <span class="ct-label">${label}</span>

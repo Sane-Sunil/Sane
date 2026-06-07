@@ -24,20 +24,30 @@ export function renderAbout(data) {
       <div class="ab-main">
         <div class="ab-bar">
           <button class="ab-tab active" onclick="
-            var p=this.parentNode;
-            p.querySelectorAll('.ab-tab').forEach(function(t){t.classList.remove('active')});
-            this.classList.add('active');
-            var b=this.closest('.ab-main').querySelector('.ab-body');
-            b.querySelectorAll('.ab-pane').forEach(function(p){p.classList.remove('active')});
-            b.querySelector('#ab-pane-' + this.dataset.tab).classList.add('active');
+            (function(btn){
+              var b=btn.closest('.ab-main').querySelector('.ab-body');
+              var old=b.querySelector('.ab-pane.active');
+              btn.parentNode.querySelectorAll('.ab-tab').forEach(function(t){t.classList.remove('active')});
+              btn.classList.add('active');
+              if(old&&old!==b.querySelector('#ab-pane-'+btn.dataset.tab)){old.classList.add('pane-leave');}
+              setTimeout(function(){
+                b.querySelectorAll('.ab-pane').forEach(function(p){p.classList.remove('active','pane-leave')});
+                b.querySelector('#ab-pane-'+btn.dataset.tab).classList.add('active');
+              },120);
+            })(this)
           " data-tab="bio">Profile</button>
           <button class="ab-tab" onclick="
-            var p=this.parentNode;
-            p.querySelectorAll('.ab-tab').forEach(function(t){t.classList.remove('active')});
-            this.classList.add('active');
-            var b=this.closest('.ab-main').querySelector('.ab-body');
-            b.querySelectorAll('.ab-pane').forEach(function(p){p.classList.remove('active')});
-            b.querySelector('#ab-pane-' + this.dataset.tab).classList.add('active');
+            (function(btn){
+              var b=btn.closest('.ab-main').querySelector('.ab-body');
+              var old=b.querySelector('.ab-pane.active');
+              btn.parentNode.querySelectorAll('.ab-tab').forEach(function(t){t.classList.remove('active')});
+              btn.classList.add('active');
+              if(old&&old!==b.querySelector('#ab-pane-'+btn.dataset.tab)){old.classList.add('pane-leave');}
+              setTimeout(function(){
+                b.querySelectorAll('.ab-pane').forEach(function(p){p.classList.remove('active','pane-leave')});
+                b.querySelector('#ab-pane-'+btn.dataset.tab).classList.add('active');
+              },120);
+            })(this)
           " data-tab="contact">Contact</button>
         </div>
         <div class="ab-body">

@@ -41,7 +41,7 @@ export function renderSkills(data) {
   const gridItems = allItems.map((entry, i) => {
     const colorIndex = cats.indexOf(entry.cat);
     const hue = colorIndex * 36;
-    return `<div class="sk-item" data-cat="${entry.cat}" style="--sk-h:${hue}">${entry.item}</div>`;
+    return `<div class="sk-item" data-cat="${entry.cat}" style="--sk-h:${hue};--i:${i}">${entry.item}</div>`;
   }).join('');
 
   return `
