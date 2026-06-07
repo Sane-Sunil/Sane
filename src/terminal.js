@@ -8,7 +8,7 @@ import { createHistory } from './core/history.js';
 import { getSuggestions, subcommands } from './core/suggestions.js';
 import { commands } from './commands/index.js';
 
-document.addEventListener('DOMContentLoaded', async () => {
+(async () => {
   const shell = initShell();
   const prompt = createPrompt();
   const output = createOutput(shell.output, shell.inputLine);
@@ -162,4 +162,4 @@ document.addEventListener('DOMContentLoaded', async () => {
       }
     }
   });
-});
+})();
