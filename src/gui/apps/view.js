@@ -10,6 +10,19 @@ let trayEl = null;
 let trayIndex = -1;
 let nextInstId = 1;
 
+const APP_STATE_KEY = "portfolio:app-state";
+
+function getAppStates() {
+  try { return JSON.parse(localStorage.getItem(APP_STATE_KEY)) || {}; } catch { return {}; }
+}
+
+function setAppState(appId, state) {
+  const states = getAppStates();
+  if (state == null) delete states[appId];
+  else states[appId] = state;
+  try { localStorage.setItem(APP_STATE_KEY, JSON.stringify(states)); } catch {}
+}
+
 function instanceAppId(instId) { return instId.split(':')[0]; }
 
 function handleEscape() {
@@ -43,7 +56,9 @@ export async function openApp(app) {
   const instId = app.id + ':' + (nextInstId++);
 
   const win = document.createElement('div');
-  win.className = 'app-window scale-in';
+  const saved = getAppStates()[app.id];
+  const isMaximized = saved?.maximized === true;
+  win.className = 'app-window scale-in' + (isMaximized ? ' maximized' : '');
   win.dataset.app = instId;
 
   const header = document.createElement('div');
@@ -70,12 +85,31 @@ export async function openApp(app) {
 
   const maxBtn = document.createElement('button');
   maxBtn.className = 'app-window-btn';
-  maxBtn.textContent = '□';
-  maxBtn.title = 'Maximize';
+  maxBtn.textContent = isMaximized ? '⊠' : '□';
+  maxBtn.title = isMaximized ? 'Restore' : 'Maximize';
+  let prevRect = null;
   maxBtn.addEventListener('click', (e) => {
     e.stopPropagation();
-    win.classList.toggle('maximized');
-    maxBtn.textContent = win.classList.contains('maximized') ? '⊠' : '□';
+    const nowMax = !win.classList.contains('maximized');
+    if (nowMax) {
+      prevRect = win.getBoundingClientRect();
+      win.classList.add('maximized');
+      win.style.left = '0px';
+      win.style.top = '0px';
+    } else {
+      win.classList.remove('maximized');
+      if (prevRect) {
+        win.style.left = prevRect.left + 'px';
+        win.style.top = prevRect.top + 'px';
+      } else {
+        const rect = win.getBoundingClientRect();
+        win.style.left = Math.max(0, (window.innerWidth - rect.width) / 2) + 'px';
+        win.style.top = Math.max(0, (window.innerHeight - rect.height) / 2) + 'px';
+      }
+    }
+    maxBtn.textContent = nowMax ? '⊠' : '□';
+    maxBtn.title = nowMax ? 'Restore' : 'Maximize';
+    setAppState(app.id, { maximized: nowMax });
   });
   controls.appendChild(maxBtn);
 
@@ -98,9 +132,14 @@ export async function openApp(app) {
 
   (desktopEl() || document.body).appendChild(win);
 
-  const winRect = win.getBoundingClientRect();
-  win.style.left = Math.max(0, (window.innerWidth - winRect.width) / 2) + 'px';
-  win.style.top = Math.max(0, (window.innerHeight - winRect.height) / 2) + 'px';
+  if (isMaximized) {
+    win.style.left = '0px';
+    win.style.top = '0px';
+  } else {
+    const winRect = win.getBoundingClientRect();
+    win.style.left = Math.max(0, (window.innerWidth - winRect.width) / 2) + 'px';
+    win.style.top = Math.max(0, (window.innerHeight - winRect.height) / 2) + 'px';
+  }
 
   topZ++;
   win.style.zIndex = topZ;
@@ -129,17 +168,28 @@ function minimizeApp(id) {
   const overlay = STORED[id];
   if (!overlay) return;
   if (!MINIMIZED.includes(id)) MINIMIZED.push(id);
-  overlay.classList.add('minimized');
-  overlay.style.display = 'none';
+  overlay.classList.add('anim-exit');
+  overlay.addEventListener('transitionend', function handler(e) {
+    if (e.propertyName !== 'opacity') return;
+    overlay.removeEventListener('transitionend', handler);
+    overlay.classList.add('minimized');
+  });
 }
 
 export function closeApp(id) {
   const win = STORED[id];
   if (!win) return;
-  win.remove();
-  delete STORED[id];
-  const idx = MINIMIZED.indexOf(id);
-  if (idx !== -1) MINIMIZED.splice(idx, 1);
+  const appId = instanceAppId(id);
+  setAppState(appId, { maximized: win.classList.contains('maximized') });
+  win.classList.add('anim-exit');
+  win.addEventListener('transitionend', function handler(e) {
+    if (e.propertyName !== 'opacity') return;
+    win.removeEventListener('transitionend', handler);
+    win.remove();
+    delete STORED[id];
+    const idx = MINIMIZED.indexOf(id);
+    if (idx !== -1) MINIMIZED.splice(idx, 1);
+  });
 }
 
 export function closeAll() {
@@ -177,7 +227,7 @@ function restoreFromTray(id) {
   if (!overlay) return;
   const idx = MINIMIZED.indexOf(id);
   if (idx !== -1) MINIMIZED.splice(idx, 1);
-  overlay.classList.remove('minimized');
+  overlay.classList.remove('minimized', 'anim-exit');
   overlay.style.display = '';
   focusApp(id);
   trayEl.classList.remove('active');

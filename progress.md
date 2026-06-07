@@ -275,3 +275,27 @@ Module 7 — Mount Subdirectory Fix:
 - Fix: use `path.startsWith(mountPath)` directly — correct because only paths that truly start with the mount path (including its trailing `/`) will match
 
 Status: Fixed
+
+---
+
+## Module 8 — Maximize State Persistence Fix
+
+### Problem
+When an app window was maximized and the page was reloaded, the saved maximized state was restored (class `maximized` applied) but the window didn't fill the desktop. It only corrected itself after manually clicking restore → maximize.
+
+### Root Cause 1 — Inline style overriding CSS class
+In `src/gui/apps/view.js`, the `openApp()` function always set inline `left`/`top` styles via centering logic after the window was appended to the DOM. These inline styles overrode the CSS `.app-window.maximized { left: 0; top: 0; }` rule, preventing the window from properly filling the viewport.
+
+**Fix:** When the window is restored as maximized, explicitly set `win.style.left = '0px'` and `win.style.top = '0px'` to match the maximize button handler behavior.
+
+### Root Cause 2 — Default maximized state for new apps
+`const isMaximized = saved?.maximized !== false` evaluated to `true` when `saved` was `undefined` (first-time app open), causing every new app window to open maximized by default.
+
+**Fix:** Changed to `saved?.maximized === true`, so maximized state is only restored when explicitly saved.
+
+### Files Changed
+- `src/gui/apps/view.js`
+  - Line 60: `saved?.maximized !== false` → `saved?.maximized === true`
+  - Lines 135-142: Wrapped centering in `if (!isMaximized)`, else explicitly set `left: 0; top: 0`
+
+Status: Fixed
