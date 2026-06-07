@@ -322,7 +322,7 @@ function makeAppDraggable(win, header, appId) {
   document.addEventListener('mouseup', onEnd);
   header.addEventListener('touchstart', onTouchStart, { passive: true });
   document.addEventListener('touchmove', onTouchMove, { passive: false });
-  document.addEventListener('touchend', onTouchEnd);
+  document.addEventListener('touchend', onTouchEnd, { passive: true });
 }
 
 export function initViewShortcuts() {

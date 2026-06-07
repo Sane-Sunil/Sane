@@ -359,7 +359,7 @@ function renderIcons(container) {
       if (e.touches.length !== 1) return;
       const t = e.touches[0];
       startDrag({ clientX: t.clientX, clientY: t.clientY }, el, container);
-    });
+    }, { passive: true });
 
     container.appendChild(el);
   });
@@ -484,7 +484,7 @@ function startDrag(e, el, container) {
   document.addEventListener('mousemove', onMove);
   document.addEventListener('mouseup', onUp);
   document.addEventListener('touchmove', onMoveTouch, { passive: false });
-  document.addEventListener('touchend', onUpTouch);
+  document.addEventListener('touchend', onUpTouch, { passive: true });
 }
 
 function showMenu(x, y, container, item) {
@@ -736,7 +736,7 @@ function makeFolderAppDraggable(el, folder, app, appId) {
     startX = t.clientX;
     startY = t.clientY;
     document.addEventListener('touchmove', onMoveTouch, { passive: false });
-    document.addEventListener('touchend', onUpTouch);
+    document.addEventListener('touchend', onUpTouch, { passive: true });
   }, { passive: true });
 }
 
