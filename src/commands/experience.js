@@ -29,9 +29,9 @@ export default function experience({ args, flags, print, data }) {
       return;
     }
     data.experience.forEach(e => {
-      print(`${e.role} at ${e.company}`);
-      printObj(print, e, { skip: ['role', 'company'], indent: 2 });
-      print('');
+      print(`${e.role} at ${e.organization}`);
+      printObj(print, e, { skip: ['role'], indent: 2 });
+      print('\n');
     });
   } else {
     print(`experience: unrecognized subcommand "${args[0]}"`);

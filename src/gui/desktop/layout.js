@@ -1,6 +1,7 @@
 import { switchToCli } from '../state.js';
 import { apps } from '../apps/registry.js';
 import { openApp, initViewShortcuts, toggleTray } from '../apps/view.js';
+import { showAcknowledgement } from '../apps/acknowledgement.js';
 import * as ds from './desktopState.js';
 
 let layout = null;
@@ -250,6 +251,7 @@ export function initDesktop() {
   resizeObs.observe(appsGrid);
 
   initViewShortcuts();
+  showAcknowledgement();
 }
 
 export function applyTheme() {
