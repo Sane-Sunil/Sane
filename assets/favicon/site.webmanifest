@@ -1,7 +1,7 @@
 {
-  "name": "Your Application Name",
-  "short_name": "App",
-  "description": "Application description",
+  "name": "Sane Sunil Portfolio",
+  "short_name": "SaneSunil",
+  "description": "Portfolio of Sane Sunil — building web apps, hardware prototypes, and cloud infrastructure from Kerala, India.",
   "start_url": "/",
   "display": "standalone",
   "background_color": "#0f172a",
@@ -28,7 +28,21 @@
     }
   ],
   "categories": [
-    "productivity"
+    "personal-portfolio",
+    "developer-portfolio",
+    "web-developer",
+    "hardware-prototyper",
+    "cloud-enthusiast",
+    "programmer",
+    "profile",
+    "resume",
+    "cv",
+    "technology",
+    "portfolio",
+    "OS",
+    "web",
+    "terminal",
+    "command-line"
   ],
   "lang": "en",
   "dir": "ltr"
