@@ -9,7 +9,7 @@ export function initShell() {
 
   const prompt = document.createElement('span');
   prompt.className = 'prompt';
-  prompt.textContent = 'user@portfolio:~$ ';
+  prompt.textContent = 'sane@portfolio:$ ';
 
   const input = document.createElement('textarea');
   input.id = 'input-field';

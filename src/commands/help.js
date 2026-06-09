@@ -40,6 +40,19 @@ export default async function help({ args, flags, print, commands, data }) {
   print('  echo        Echo back input');
   print('  kill        Close the portfolio tab');
   print('  startgui    Switch to GUI mode');
+  print('');
+  print('Filesystem commands:');
+  print('  ls          List directory contents');
+  print('  cd          Change current directory');
+  print('  pwd         Print working directory');
+  print('  mkdir       Create directories');
+  print('  rmdir       Remove empty directories');
+  print('  new         Create empty files');
+  print('  rm          Remove files');
+  print('  cp          Copy files and directories');
+  print('  mv          Move/rename files and directories');
+  print('  cat         Print file contents');
+  print('  tree        Display directory tree');
   print('\n');
 
   print('Shortcuts:');

@@ -11,6 +11,18 @@ import kill from './kill.js';
 import download from './download.js';
 import resume from './resume.js';
 import startgui from './startgui.js';
+import ls from './ls.js';
+import cd from './cd.js';
+import pwd from './pwd.js';
+import mkdir from './mkdir.js';
+import rmdir from './rmdir.js';
+import newCmd from './new.js';
+import rm from './rm.js';
+import cp from './cp.js';
+import mv from './mv.js';
+import cat from './cat.js';
+import tree from './tree.js';
+import edit from './edit.js';
 
 export const commands = {
   echo,
@@ -25,5 +37,17 @@ export const commands = {
   kill,
   download,
   resume,
-  startgui
+  startgui,
+  ls,
+  cd,
+  pwd,
+  mkdir,
+  rmdir,
+  new: newCmd,
+  rm,
+  cp,
+  mv,
+  cat,
+  tree,
+  edit,
 };

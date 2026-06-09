@@ -8,7 +8,7 @@ export function renderTerminal() {
     <div class="term-app-layout">
       <div class="term-app-output" id="term-app-output"></div>
       <div class="term-app-input-line" id="term-app-input-line">
-        <span class="term-app-prompt">user@portfolio:~$ </span>
+        <span class="term-app-prompt">sane@portfolio:$ </span>
         <textarea class="term-app-field" id="term-app-field" spellcheck="false" rows="1"></textarea>
       </div>
     </div>

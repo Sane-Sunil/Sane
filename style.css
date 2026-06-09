@@ -33,18 +33,27 @@ body {
   -webkit-user-select: text;
 }
 
-/* #output::-webkit-scrollbar {
+#output {
+  scrollbar-width: thin;
+  scrollbar-color: #313244 transparent;
+}
+
+#output::-webkit-scrollbar {
   width: 6px;
 }
 
 #output::-webkit-scrollbar-track {
-  background: #0a0a0a;
+  background: transparent;
 }
 
 #output::-webkit-scrollbar-thumb {
-  background: #2a2a2a;
+  background: #313244;
   border-radius: 3px;
-} */
+}
+
+#output::-webkit-scrollbar-thumb:hover {
+  background: #45475a;
+}
 
 #input-line {
   display: flex;

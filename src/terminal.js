@@ -7,10 +7,13 @@ import { createExecutor } from './core/executor.js';
 import { createHistory } from './core/history.js';
 import { getSuggestions, subcommands } from './core/suggestions.js';
 import { commands } from './commands/index.js';
+import { createFilesystem } from './core/filesystem.js';
 
 (async () => {
   const shell = initShell();
-  const prompt = createPrompt();
+  const fs = await createFilesystem();
+  const prompt = createPrompt(fs);
+  document.querySelector('.prompt').textContent = prompt.get();
   const output = createOutput(shell.output, shell.inputLine);
   const history = createHistory();
   const commandNames = Object.keys(commands);
@@ -117,7 +120,8 @@ import { commands } from './commands/index.js';
   }
   await sleep(150);
   output.print('');
-  output.print('  Welcome to Terminal Portfolio');
+  output.print('  Hello, I\'m Sane!');
+  output.print('  Welcome to my Portfolio');
   output.print("  Type 'help' to get started.");
   output.print('\n');
 
@@ -125,7 +129,7 @@ import { commands } from './commands/index.js';
   shell.input.classList.remove('disabled');
   shell.input.focus();
 
-  const executor = createExecutor(output, data, { clearHistory: () => history.clear(), printHtml: (html) => output.printHtml(html) });
+  const executor = createExecutor(output, data, { fs, clearHistory: () => history.clear(), printHtml: (html) => output.printHtml(html) });
 
   input.onSubmit(async (value) => {
     if (!value.trim()) return;
@@ -161,5 +165,7 @@ import { commands } from './commands/index.js';
         }
       }
     }
+
+    document.querySelector('.prompt').textContent = prompt.get();
   });
 })();

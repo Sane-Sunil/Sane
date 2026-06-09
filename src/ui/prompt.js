@@ -1,10 +1,11 @@
-export function createPrompt() {
-  const username = 'user';
+export function createPrompt(fs) {
+  const username = 'sane';
   const hostname = 'portfolio';
 
   return {
     get() {
-      return `${username}@${hostname}:~$ `;
+      const dir = fs ? fs.getPrompt() : '~';
+      return `${username}@${hostname}:$ `;
     }
   };
 }

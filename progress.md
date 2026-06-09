@@ -5,7 +5,7 @@
 ## Module 1 - Terminal UI Shell Setup
 - Created fullscreen terminal layout (HTML + CSS)
 - Built scrollable output area and fixed input line at bottom
-- Implemented prompt display (`user@portfolio:~$ `)
+- Implemented prompt display (`user@portfolio:/$ `)
 - Added real-time input handling (typing + Enter key)
 - Added responsive design (mobile + desktop breakpoints)
 - Added click-to-focus on input
