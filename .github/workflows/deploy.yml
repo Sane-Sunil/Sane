@@ -1,0 +1,34 @@
+name: Build and Push
+
+on:
+  push:
+    tags:
+      - "v*"
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Checkout code
+        uses: actions/checkout@v4
+
+      - name: Set tag
+        run: echo "TAG=${GITHUB_REF_NAME}" >> $GITHUB_ENV
+
+      - name: Login Docker Hub
+        uses: docker/login-action@v3
+        with:
+          username: ${{ secrets.DOCKER_USERNAME }}
+          password: ${{ secrets.DOCKER_PASSWORD }}
+
+      - name: Build image
+        run: |
+          docker build \
+            -t sanesunil/os-portfolio:$TAG \
+            -t sanesunil/os-portfolio:latest .
+
+      - name: Push image
+        run: |
+          docker push sanesunil/os-portfolio:$TAG
+          docker push sanesunil/os-portfolio:latest
