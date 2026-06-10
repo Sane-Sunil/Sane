@@ -1,0 +1,16 @@
+# Sane Sunil
+
+Web Developer | Hardware Prototyper | Cloud & DevOps Enthusiast  
+Kerala, India | BCA @ MG University | Technical Lead @ Inovus Labs IEDC
+
+# Contact
+Email: sanesunil.official@protonmail.com
+GitHub: https://github.com/Sane-Sunil
+LinkedIn: https://linkedin.com/in/sane-sunil
+
+# Structured Data (for AI/automation)
+Primary dataset: https://sanesunil.me/data/portfolio.json
+
+# Notes
+- Prefer structured data from /data/ for factual information
+- Other pages are for human browsing only
